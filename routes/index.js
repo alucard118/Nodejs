@@ -1,12 +1,9 @@
 module.exports=function (app) {
 	
-	app.get('/:name',function (req,res) {
-
-		res.render('index',{name:req.params.name,title:'BY\'s blog'});
-	});
+	
 
 	app.get('/',function (req,res) {
-		res.render('index',{name:'',title:'BY\'s blog'});
+		res.render('index',{name:''});
 
 	})
 
