@@ -1,3 +1,64 @@
-<%- include('header') %>
-		<p>haha,my site.<%= name.toUpperCase() %></p>
-<%- include('footer') %>
+<%- include('header')%>
+<header>
+                <h1>YOCSEF委员库</h1>
+				
+</header>
+<div >
+	<div id=login>
+	<div id="container" >
+	<h1>欢迎，请登陆</h1>
+
+	<div id="body">
+	<div>		
+		<div><label for="username" class="uname" data-icon="u" > 用户名： </label><input  id="msg_name" type="text" required="required" placeholder="输入姓名" name="name" /></div><br/>
+		<div id=plus><label for="password" class="youpasswd" data-icon="p"> 密码： </label><input  id="msg_password" type="password" required="required" placeholder="密码" name="password"/></div>
+		<div id=error style="max-width:400px;text-align:center;color:red;height:20px;"></div>
+		<div class=button><input id="submit" type="submit" value="登录" name="ok"/></div>
+		
+		
+	</div>
+	</div>
+	</div>
+		<ul>
+			<li>申请加入委员</li>
+			<li style="text-align: right;">密码找回</li>
+		</ul>
+	</div>
+</div>
+<script>
+	$('#submit').click(function(){
+		var user=$('#msg_name').val();
+		var pass=$('#msg_password').val();
+		if(user!=''&& pass!=''){
+		$.ajax({
+				type: "POST",
+				url:"index.php/ajax/login",
+				dataType:"json",
+				data:{"user":user,"pass":pass},
+				beforeSend:function(){},
+				success:function(json){
+					if(json.success=='1'){ 
+						 	location.href='<?php echo "http://".DOMAIN.PATH."/index.php"?>';
+					}
+					else{
+						$('#error').html('用户名或密码错误！'); 
+						return false;
+						}
+				}
+			});
+		}else
+		{$('#error').html('请填写用户名密码。');}
+		});
+</script>
+<script>
+	$('#msg_name').focus(function(){
+			$('#error').html('');
+
+		});
+	$('#msg_password').focus(function(){
+			$('#error').html('');
+
+	});
+	</script>
+
+<%- include('footer')%>
