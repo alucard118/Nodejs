@@ -8,15 +8,23 @@
 	<div id="container" >
 	<h1>欢迎，请登陆</h1>
 
-	<div id="body">
+	<div id="submit_body">
+	<form  action="/user" method="POST">
 	<div>		
-		<div><label for="username" class="uname" data-icon="u" > 用户名： </label><input  id="msg_name" type="text" required="required" placeholder="输入姓名" name="name" /></div><br/>
-		<div id=plus><label for="password" class="youpasswd" data-icon="p"> 密码： </label><input  id="msg_password" type="password" required="required" placeholder="密码" name="password"/></div>
+		<div>
+			<label for="username" class="uname" data-icon="u" > 用户名： </label>
+			<input  id="msg_name" type="text" required="required" placeholder="输入姓名" name="name" />
+		</div><br/>
+		<div id=plus>
+			<label for="password" class="youpasswd" data-icon="p"> 密码： </label>
+			<input  id="msg_password" type="password" required="required" placeholder="密码" name="password"/>
+		</div>
 		<div id=error style="max-width:400px;text-align:center;color:red;height:20px;"></div>
 		<div class=button><input id="submit" type="submit" value="登录" name="ok"/></div>
 		
 		
 	</div>
+	</form>
 	</div>
 	</div>
 		<ul>

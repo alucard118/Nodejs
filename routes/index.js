@@ -1,6 +1,6 @@
 module.exports=function (app) {
 	
-<<<<<<< HEAD
+
 	// app.get('/:name',function (req,res) {
 
 	// 	res.render('index',{name:req.params.name,title:'BY\'s blog'});
@@ -8,14 +8,19 @@ module.exports=function (app) {
 
 	app.get('/',function (req,res) {
 		res.render('index');
-=======
-	
+	});
+	app.post('/user',function (req,res) {
+		var name=req.params.name;
+		var password=req.params.password;
+		
+		console.log(req.params);
+	});
 
 	app.get('/',function (req,res) {
 		res.render('index',{name:''});
->>>>>>> origin/master
 
-	})
+
+	});
 
 	// var express=require('express');
 	// var router=express.Router();
