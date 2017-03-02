@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+   
+      body {background:#f1f1f1;font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+	  .imgList{display:block;padding:5px 5px;}
+	  .imgList img{width:100%;}
+	  .titleList{display:block;padding: 5px 5px;}
+	  .titleList a{display:block;padding: 5px 0;text-align:justify;text-decoration: none;color:#2c2b2b;line-height: 21px;font-family: }
+	  .row{background-color:#fff;margin: 10px 0;}
+	  .navbar-inverse{background: #225bdf;border:none;height: 90px;}
+	  .affix{top:0;width: 100%;z-index: 9999 !important}
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="50" >
+    	<div class="container-fluid">
+    		<div class="navbar-header">1111</div>
+    	</div>
+    </nav>
+    <div class="container-fluid">
+    <% for(var i=0;i<imgSrc.length;i++) {%>
+    <div class="row">
+    	<div class="imgList col-xs-4"><img src=<%= imgSrc[i] %>></div>
+        <div class="titleList col-xs-8"><a href=<%= newsHref[i] %>><%= titleList[i] %> </a></div>
+    </div>
+    <% }%>
+    </div>
+  </body>
+</html>
