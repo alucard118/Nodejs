@@ -4,12 +4,16 @@ var url=require('url');
 var superagent=require('superagent');
 var cheerio=require('cheerio');
 var eventproxy=require('eventproxy');
+var mongo=require('mongodb');
+var server=new mongo.Server('localhost',27017,{auto_reconnect:true},{safe:true});
+var db=new mongo.Db('ccfWebsite',server);
 
 var target_href='http://www.ccf.org.cn';
 
 var hrefArray=[];
 var imgArray=[];
 var titleArray=[];
+var newsArray=[]
 superagent.get(target_href).end(function (err,sres) {	
 	if(err)
 		console.log(err);
@@ -54,7 +58,7 @@ superagent.get(target_href).end(function (err,sres) {
  		var title=$element.attr('title');
  		titleArray.push(title);
  	})
-     console.log(titleArray);
+     //console.log(titleArray);
 	
 
 	// var ep=new eventproxy();
@@ -69,15 +73,38 @@ superagent.get(target_href).end(function (err,sres) {
 	// 	});
 	// 	console.log(topics);
 	// });
-	 console.log(imgArray);
+	// console.log(imgArray);
 	// items.forEach(function (item) {
 	// 	superagent.get(item).end(function (err,res) {
 	// 		ep.emit('sub_content',[item,res.text]);
 	// 	});
 	// })
+	for(i=0;i<titleArray.length;i++){
+					newsArray.push({title:titleArray[i],image:imgArray[i],href:hrefArray[i]});
+					//collection.insert({title:titleArray[i],image:imgArray[i],href:hrefArray[i]});
+				}
+	//写入数据库
+	db.open(function (err,db) {
+		if(err) throw err;
+		else{
+			db.collection('ccfNews',function (err,collection) {
+				collection.insert(newsArray);
+				db.close(true);
+				console.log('database write success');
+				//collection.insert({title:titleArray[i],image:imgArray[i],href:hrefArray[i]});
+			});
+		}
+	});
+	
+
+
+	//console.log(newsArray);
+	hrefArray=[],imgArray=[],titleArray=[];
+
 });
 
 router.get('/',function (req,res) {
-	res.render('index',{imgSrc:imgArray,newsHref:hrefArray,titleList:titleArray});
+
+	res.render('index',{newsList:newsArray});
 });
 module.exports=router;

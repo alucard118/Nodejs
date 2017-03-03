@@ -62,10 +62,10 @@
       </ul>
     </nav>
     <div class="container-fluid">
-    <% for(var i=0;i<imgSrc.length;i++) {%>
+    <% for(var i=0;i<newsList.length;i++) {%>
     <div class="row">
-    	<div class="imgList col-xs-4"><img src=<%= imgSrc[i] %>></div>
-        <div class="titleList col-xs-8"><a href=<%= newsHref[i] %>><%= titleList[i] %> </a></div>
+    	<div class="imgList col-xs-4"><img src=<%= newsList[i].image %>></div>
+        <div class="titleList col-xs-8"><a href=<%= newsList[i].href %>><%= newsList[i].title %> </a></div>
     </div>
     <% }%>
     </div>
