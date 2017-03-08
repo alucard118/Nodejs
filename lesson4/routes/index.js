@@ -106,5 +106,6 @@ superagent.get(target_href).end(function (err,sres) {
 router.get('/',function (req,res) {
 
 	res.render('index',{newsList:newsArray});
+	res.render('jujiao',{newsList:newsArray});
 });
 module.exports=router;
